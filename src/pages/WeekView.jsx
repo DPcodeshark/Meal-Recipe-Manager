@@ -8,7 +8,7 @@ import { MEMBER_COLORS, CUISINE_EMOJI } from '../utils/constants'
 const initialOf = (name) => (name && name[0] ? name[0].toUpperCase() : '?')
 import { addDays, format } from 'date-fns'
 import {
-  ChevronLeft, ChevronRight, X, BookOpen, CalendarPlus, Search, Star
+  ChevronLeft, ChevronRight, X, BookOpen, CalendarPlus, Search, Star, HelpCircle
 } from 'lucide-react'
 import { Link, useNavigate } from 'react-router-dom'
 
@@ -24,7 +24,17 @@ export default function WeekView() {
   const [sidebarOpen, setSidebarOpen] = useState(true)
   const [assigneePickerFor, setAssigneePickerFor] = useState(null)
   const [dragOverDate, setDragOverDate] = useState(null)
+  const [showHint, setShowHint] = useState(() => {
+    const stored = localStorage.getItem('showWelcomeHint')
+    return stored === null ? true : stored === '1'
+  })
   const assigneePickerRef = useRef(null)
+
+  function toggleHint() {
+    const next = !showHint
+    setShowHint(next)
+    localStorage.setItem('showWelcomeHint', next ? '1' : '0')
+  }
 
   const memberByName = (name) => family?.members?.find(m => m.name === name)
   const mealByName = (name) => libraryMeals.find(m => m.name?.toLowerCase() === name?.toLowerCase())
@@ -127,6 +137,27 @@ export default function WeekView() {
   return (
     <div className={`planner ${sidebarOpen ? 'sidebar-open' : ''}`}>
       <div className="planner-main">
+        {showHint && (
+          <div className="welcome-hint" role="note">
+            <span className="welcome-hint-emoji" aria-hidden="true">👋</span>
+            <p className="welcome-hint-text">
+              <span className="welcome-hint-segment"><span aria-hidden="true">📅</span> Pick a date</span>
+              <span className="welcome-hint-sep">·</span>
+              <span className="welcome-hint-segment"><span aria-hidden="true">🍳</span> a meal to cook</span>
+              <span className="welcome-hint-sep">·</span>
+              <span className="welcome-hint-segment"><span aria-hidden="true">🔍</span> or explore to find new meals to try</span>
+            </p>
+            <button
+              className="welcome-hint-dismiss"
+              onClick={toggleHint}
+              title="Hide tips"
+              aria-label="Hide tips"
+              type="button"
+            >
+              <X size={14} />
+            </button>
+          </div>
+        )}
         <div className="week-header">
           <button onClick={() => setWeekOffset(weekOffset - 1)} className="btn-icon">
             <ChevronLeft size={20} />
@@ -142,6 +173,14 @@ export default function WeekView() {
               title="Toggle meal list"
             >
               <BookOpen size={18} />
+            </button>
+            <button
+              onClick={toggleHint}
+              className={`btn-icon ${showHint ? 'active' : ''}`}
+              title={showHint ? 'Hide tips' : 'Show tips'}
+              aria-label={showHint ? 'Hide tips' : 'Show tips'}
+            >
+              <HelpCircle size={18} />
             </button>
           </div>
         </div>
