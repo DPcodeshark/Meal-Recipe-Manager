@@ -1,0 +1,13 @@
+/* Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+input, button, textarea, select {
+  font: inherit;
+  outline: none;
+}
+
+a { color: inherit; }

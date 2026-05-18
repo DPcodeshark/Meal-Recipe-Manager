@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#fdf8f1" />
+    <title>Zavods</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      :root {
+        --bg: #fdf8f1;
+        --surface: #ffffff;
+        --ink: #3a2f2a;
+        --muted: #8b7768;
+        --accent: #d97757;
+        --accent-hover: #c4623f;
+        --border: #ead9c5;
+      }
+      body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background: var(--bg);
+        color: var(--ink);
+        min-height: 100dvh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        -webkit-font-smoothing: antialiased;
+      }
+      main {
+        text-align: center;
+        max-width: 520px;
+        width: 100%;
+      }
+      .hero-emoji {
+        font-size: 4.5rem;
+        line-height: 1;
+        margin-bottom: 18px;
+      }
+      h1 {
+        font-family: 'Fraunces', Georgia, 'Times New Roman', serif;
+        font-size: clamp(2.6rem, 9vw, 4.2rem);
+        font-weight: 600;
+        font-variation-settings: "opsz" 144, "SOFT" 100;
+        letter-spacing: -0.02em;
+        line-height: 1.05;
+        margin-bottom: 14px;
+      }
+      .tagline {
+        font-size: 1.05rem;
+        color: var(--muted);
+        line-height: 1.5;
+        margin-bottom: 36px;
+      }
+      .apps {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        align-items: stretch;
+      }
+      .app-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding: 18px 32px;
+        background: var(--accent);
+        color: white;
+        font-weight: 600;
+        font-size: 1.1rem;
+        text-decoration: none;
+        border-radius: 999px;
+        box-shadow: 0 4px 14px rgba(217, 119, 87, 0.28);
+        transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.15s ease;
+      }
+      .app-link:hover {
+        background: var(--accent-hover);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 24px rgba(217, 119, 87, 0.34);
+      }
+      .app-link:active { transform: translateY(0); }
+      .app-emoji { font-size: 1.4rem; }
+      footer {
+        margin-top: 48px;
+        color: var(--muted);
+        font-size: 0.82rem;
+        opacity: 0.7;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="hero-emoji" aria-hidden="true">🏡</div>
+      <h1>Zavods</h1>
+      <p class="tagline">A small collection of family apps.</p>
+      <div class="apps">
+        <a class="app-link" href="/meals/">
+          <span class="app-emoji" aria-hidden="true">🍲</span>
+          Dinner App
+        </a>
+      </div>
+      <footer>Made with care, at home.</footer>
+    </main>
+  </body>
+</html>
