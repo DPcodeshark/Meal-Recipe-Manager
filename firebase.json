@@ -24,6 +24,10 @@
       {
         "source": "/meals/**",
         "destination": "/meals/index.html"
+      },
+      {
+        "source": "/learn/**",
+        "destination": "/learn/index.html"
       }
     ],
     "headers": [

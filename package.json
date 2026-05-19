@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node scripts/post-build.js",
+    "dev:learn": "vite --config vite.learn.config.js",
+    "build": "vite build && vite build --config vite.learn.config.js && node scripts/post-build.js",
     "lint": "eslint .",
     "preview": "vite preview"
   },
