@@ -29,10 +29,7 @@ export default function PinGate({ children }) {
       <div className="pin-gate-card">
         <span className="pin-gate-icon" aria-hidden="true"><Lock size={28} /></span>
         <h1>Zavods Learn</h1>
-        <p className="pin-gate-lede">
-          This is a private learning guide for the Zavod family. Enter the
-          PIN your uncle gave you to continue.
-        </p>
+        <p className="pin-gate-lede">Enter the PIN to continue.</p>
         <form onSubmit={submit} className="pin-gate-form">
           <input
             type="tel"
