@@ -415,6 +415,63 @@ pre code {
   text-overflow: ellipsis;
 }
 
+/* Architecture stack diagram */
+.arch-stack {
+  display: flex;
+  flex-direction: column;
+  margin: 28px 0;
+}
+
+.arch-block {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 18px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.15s, transform 0.1s;
+}
+.arch-block:hover { border-color: var(--primary); }
+
+.arch-block h3 {
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+}
+.arch-block p { font-size: 14.5px; line-height: 1.55; color: var(--text); margin: 0; }
+.arch-block p a { font-weight: 500; }
+.arch-block code { font-size: 0.85em; }
+
+.arch-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+  background: var(--primary);
+  border-radius: 8px;
+}
+
+.arch-arrow {
+  color: var(--text-muted);
+  text-align: center;
+  font-size: 13px;
+  padding: 10px 0;
+  font-family: var(--font-mono);
+}
+.arch-arrow em {
+  font-family: var(--font-body);
+  font-style: italic;
+  margin-left: 8px;
+  font-size: 12.5px;
+}
+
 /* Quiz */
 .quiz {
   margin: 40px 0 0;
