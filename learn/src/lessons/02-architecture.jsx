@@ -52,7 +52,7 @@ export default function Architecture() {
           <span className="arch-num">4</span>
           <div>
             <h3>A database</h3>
-            <p>The app itself is just templates — no meals, no grocery lists, no users. The actual data lives in <strong>Firestore</strong> (another Google service, also part of Firebase). When you tap a day to assign a meal, the app sends that change to Firestore. When your spouse opens the app on their phone, it reads the same Firestore and sees your change. <strong>Firestore is the shared brain.</strong></p>
+            <p>The app itself is just templates — no meals, no grocery lists, no users. The actual data lives in <strong>Firestore</strong> (another Google service, also part of Firebase). When you tap a day to assign a meal, the app sends that change to Firestore. When another family member opens the app on their phone, it reads the same Firestore and sees your change. <strong>Firestore is the shared brain.</strong></p>
           </div>
         </div>
 
@@ -117,7 +117,7 @@ export default function Architecture() {
             explanation: "Hosting = file delivery. The compiled output of `npm run build` lives there, and Firebase ships it to browsers. The data is in Firestore (separate service); the functions run on Cloud Functions; the domain is at GoDaddy.",
           },
           {
-            q: "Where do you and your wife's planned meals actually live?",
+            q: "Where do your family's planned meals actually live?",
             choices: [
               "Inside the React app code on GitHub",
               "In a SQL table on Firebase Hosting",
@@ -125,7 +125,7 @@ export default function Architecture() {
               "On your phone's local storage only",
             ],
             correct: 2,
-            explanation: "Firestore is the shared 'brain.' The app is just a templated view of whatever's in Firestore. That's why your spouse sees your changes seconds after you make them on a different device.",
+            explanation: "Firestore is the shared 'brain.' The app is just a templated view of whatever's in Firestore. That's why other family members see your changes seconds after you make them on a different device.",
           },
           {
             q: "Why does the Dinner App use Cloud Functions for recipe import instead of doing it in the browser?",

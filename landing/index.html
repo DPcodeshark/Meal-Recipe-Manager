@@ -89,6 +89,18 @@
       }
       .app-link:active { transform: translateY(0); }
       .app-emoji { font-size: 1.4rem; }
+
+      .app-link.secondary {
+        background: transparent;
+        color: var(--accent);
+        border: 1.5px solid var(--accent);
+        box-shadow: none;
+      }
+      .app-link.secondary:hover {
+        background: var(--accent);
+        color: white;
+        box-shadow: 0 6px 16px rgba(217, 119, 87, 0.22);
+      }
       footer {
         margin-top: 48px;
         color: var(--muted);
@@ -106,6 +118,10 @@
         <a class="app-link" href="/meals/">
           <span class="app-emoji" aria-hidden="true">🍲</span>
           Dinner App
+        </a>
+        <a class="app-link secondary" href="/learn/">
+          <span class="app-emoji" aria-hidden="true">📌</span>
+          How it was built
         </a>
       </div>
       <footer>Made with care, at home.</footer>

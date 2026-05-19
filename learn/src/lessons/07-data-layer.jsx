@@ -34,7 +34,7 @@ export default function DataLayer() {
   "cuisine": "American",
   "ingredients": ["1 lb beef", "2 cups noodles", ...],
   "favorite": true,
-  "ratings": { "Cory": "up", "Avery": "down" }
+  "ratings": { "Alex": "up", "Sam": "down" }
 }`}</code></pre>
       <p>
         That whole path — <code>families/abc123/meals/xyz789</code> — is the
@@ -65,8 +65,8 @@ export default function DataLayer() {
   return unsub
 }, [familyId, weekId])`}</code></pre>
       <p>
-        That single hook subscribes to one week's planning data. When your
-        spouse drags a meal onto Thursday from their phone, Firestore notifies
+        That single hook subscribes to one week's planning data. When another
+        family member drags a meal onto Thursday from their phone, Firestore notifies
         every connected device, this callback fires, <code>setWeekPlan</code>{' '}
         updates React's state, and the UI re-renders. Sub-second.
       </p>
@@ -137,7 +137,7 @@ export default function DataLayer() {
         what the <strong>family PIN</strong> + the avatar picker do. The PIN
         unlocks which family's data you see; the avatar pick records who you
         are <em>within</em> that family (so meals you add are tagged{' '}
-        <code>addedBy: "Cory"</code>, ratings show up with your initial, etc.).
+        <code>addedBy: "Alex"</code>, ratings show up with your initial, etc.).
       </p>
       <p>
         It's a stripped-down auth model. <strong>Pros</strong>: zero friction —
@@ -178,7 +178,7 @@ export default function DataLayer() {
         Click around. It'll click once you see the real data structure.
       </p>
       <figure className="screenshot">
-        <img src="/learn/firestore-console.png" alt="Firebase Firestore Console showing the Dinner App's data: the (default) database on the left, the families collection in the middle with one document (a random ID like 9gvhk722Zd7y8adSdYfB), and that document expanded on the right showing four subcollections (groceryLists, meals, settings, weeks) and a members array with name/role fields for Merrill, Cory, Avery, and Radek." />
+        <img src="/learn/firestore-console.png" alt="Firebase Firestore Console showing the Dinner App's data: the (default) database on the left, the families collection in the middle with one document (a random auto-generated ID), and that document expanded on the right showing four subcollections (groceryLists, meals, settings, weeks) and a members array with name/role fields for each family member." />
         <figcaption>
           A real view of this app's Firestore. Notice four things: (1) the
           family's document ID is a random string Firebase auto-generated
@@ -208,7 +208,7 @@ export default function DataLayer() {
             explanation: "getDoc = give me the current value. onSnapshot = give me the current value AND keep me updated. The 'real-time sync' magic of the app is built on onSnapshot.",
           },
           {
-            q: "Family member Cory opens the planner on his phone. Erika, on her phone, drags a meal onto Tuesday. What does Cory's phone do?",
+            q: "One family member opens the planner on their phone. Another, on a different phone, drags a meal onto Tuesday. What does the first phone do?",
             choices: [
               "Nothing — he needs to refresh",
               "His onSnapshot callback fires with the updated week document; React re-renders; the new meal appears on Tuesday automatically",
@@ -216,7 +216,7 @@ export default function DataLayer() {
               "A push notification appears asking him to refresh",
             ],
             correct: 1,
-            explanation: "Both phones are subscribed to the same week document via onSnapshot. Erika's setDoc updates Firestore; Firestore pushes the change to everyone watching that document. Sub-second sync, no refresh needed.",
+            explanation: "Both phones are subscribed to the same week document via onSnapshot. The second user's setDoc updates Firestore; Firestore pushes the change to everyone watching that document. Sub-second sync, no refresh needed.",
           },
           {
             q: "Why use Firestore instead of a SQL database like Postgres?",

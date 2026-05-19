@@ -53,9 +53,10 @@ export default function WhereNext() {
         </li>
         <li>
           <strong>Dietary cross-reference at meal assignment</strong> — warn
-          if a planned meal contains a flagged ingredient (Merrill is allergic
-          to chicken; warn before he's the assigned cook for chicken
-          marsala). Touches: ingredient matching, member data, gentle UX.
+          if a planned meal contains a flagged ingredient (e.g., if a family
+          member is allergic to chicken, warn before they're the assigned
+          cook for chicken marsala). Touches: ingredient matching, member
+          data, gentle UX.
         </li>
         <li>
           <strong>Cooking mode</strong> — when you tap a planned meal on the

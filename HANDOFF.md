@@ -1,6 +1,6 @@
 # Dinner App — Family Meal Planner
 
-Lives at **https://zavods.com/meals** (root `https://zavods.com` serves a small landing page that links into the app). Firebase project `zavod-meals`.
+Lives at **https://zavods.com/meals**. Sister site at **https://zavods.com/learn** is a 14-lesson instructional companion teaching the family how the app was built and how to maintain it with Claude Code. Root `https://zavods.com` serves a small landing page linking to both. Firebase project `zavod-meals`. Repo (public): https://github.com/DPcodeshark/Meal-Recipe-Manager.
 
 ## What It Does
 
@@ -37,10 +37,29 @@ A mobile-first PWA that lets a family of 5 (Erika, Merrill, Cory, Avery, Radek) 
 ├── index.html              # SPA shell — references /meals/-prefixed assets, data-theme="warm"
 ├── landing/
 │   └── index.html          # Standalone static landing page for zavods.com root
+├── learn/                  # /learn instructional site — separate React+Vite app
+│   ├── index.html          # entry; data-theme="warm"
+│   ├── public/             # static assets including 4 inline lesson screenshots (firestore-console.png, hosting-deploys.png, functions-dashboard.png, github-tree.png) + chef-hat favicon.svg
+│   └── src/
+│       ├── main.jsx        # entry with BrowserRouter basename="/learn"
+│       ├── App.jsx         # routes: / (Home) and /lessons/:slug; mounts <ScrollToTop/>
+│       ├── App.css         # warm theme + lesson typography + quiz styling
+│       ├── lessons/        # one JSX file per lesson, registered in index.js
+│       │   ├── index.js    # LESSONS array + findLesson(slug) helper
+│       │   ├── 01-welcome.jsx ... 14-where-next.jsx  # 14 lessons total
+│       ├── pages/
+│       │   └── Home.jsx    # landing for /learn — hero + curriculum TOC
+│       └── components/
+│           ├── Layout.jsx       # header + sidebar nav + mobile drawer
+│           ├── LessonChrome.jsx # lesson header + prev/next footer
+│           ├── Quiz.jsx         # data-driven multiple-choice with inline explanations
+│           └── ScrollToTop.jsx  # resets scroll on route change
 ├── scripts/
-│   └── post-build.js       # Copies landing/ → dist/ after `vite build` writes dist/meals/
+│   ├── post-build.js       # Copies landing/ → dist/ after `vite build` writes dist/meals/
+│   └── generate-icons.js   # Renders favicon.svg → PNG sizes via sharp
 ├── vite.config.js          # base: '/meals/', outDir: 'dist/meals/', PWA scope/start_url '/meals/'
-├── firebase.json           # Hosting public: 'dist'; rewrites /meals/** → /meals/index.html
+├── vite.learn.config.js    # base: '/learn/', outDir: 'dist/learn/'; no PWA (read-only doc site)
+├── firebase.json           # Hosting public: 'dist'; rewrites /meals/** and /learn/** → respective index.html
 ├── src/
 │   ├── App.jsx             # Routes + shell, BrowserRouter basename="/meals"
 │   ├── App.css             # All component styles (single file). Theme tokens under [data-theme="warm"] (default) and [data-theme="midnight"]
@@ -160,19 +179,23 @@ The 2026-05 redesign moved the app from "dark AI dashboard" to "warm kitchen cou
 
 ## Hosting architecture
 
-Single Firebase Hosting site, two paths:
+Single Firebase Hosting site, **three** paths:
 
 ```
-zavods.com/        → dist/index.html        (landing page, plain static HTML)
-zavods.com/meals/* → dist/meals/index.html  (React SPA, with rewrite for deep links)
+zavods.com/        → dist/index.html        (landing page, plain static HTML, links to /meals/ and /learn/)
+zavods.com/meals/* → dist/meals/index.html  (Dinner App React SPA, with rewrite for deep links)
+zavods.com/learn/* → dist/learn/index.html  (Learn instructional site, separate React SPA)
 ```
 
 **Key config:**
-- `vite.config.js` → `base: '/meals/'` + `build.outDir: 'dist/meals'` — Vite emits the SPA into `dist/meals/` with all asset URLs prefixed `/meals/`
-- `vite-plugin-pwa` workbox config → `navigateFallback: '/meals/index.html'`, `navigateFallbackAllowlist: [/^\/meals\//]`, manifest `start_url: '/meals/'`, `scope: '/meals/'`
-- `src/App.jsx` → `<BrowserRouter basename="/meals">`
-- `firebase.json` → `hosting.rewrites` maps `/meals/**` to `/meals/index.html` so client-side routes like `/meals/grocery` return the SPA shell
-- `scripts/post-build.js` → after `vite build`, copies `landing/*` over `dist/*`, putting the landing's `index.html` at `dist/index.html`. `package.json` build script chains it: `"build": "vite build && node scripts/post-build.js"`
+- `vite.config.js` → builds the Dinner App. `base: '/meals/'` + `build.outDir: 'dist/meals'`. Has the PWA plugin.
+- `vite.learn.config.js` → builds the Learn site. `root: 'learn'`, `base: '/learn/'`, `build.outDir: '../dist/learn'`. No PWA plugin (read-only doc site, not installable).
+- Both share the same `package.json` + `node_modules` at the repo root.
+- `vite-plugin-pwa` workbox config for the meals app → `navigateFallback: '/meals/index.html'`, `navigateFallbackAllowlist: [/^\/meals\//]` so the SW doesn't hijack landing or /learn requests.
+- `src/App.jsx` → `<BrowserRouter basename="/meals">`; `learn/src/main.jsx` → `<BrowserRouter basename="/learn">`.
+- `firebase.json` → `hosting.rewrites` maps `/meals/**` and `/learn/**` to their respective `index.html` for client-side routing.
+- `scripts/post-build.js` → after both vite builds, copies `landing/*` over `dist/*`, putting the landing's `index.html` at `dist/index.html`.
+- Root build script: `"build": "vite build && vite build --config vite.learn.config.js && node scripts/post-build.js"`.
 
 **Why this structure:** keeps SPA assets cleanly under `/meals/`, lets the landing be a single hand-edited HTML file, avoids any rewrite/router conflict between root and SPA. Custom domain (zavods.com → Firebase) is configured in the Firebase Hosting console.
 
