@@ -2,16 +2,18 @@
 
 The Dinner App lives on the web at **https://zavods.com/meals** — but you can install it to your home screen so it looks and behaves like a real app. No App Store, no account, no download.
 
-## On an iPhone or iPad (Safari)
+## On an iPhone or iPad
 
-1. Open **Safari** (not Chrome — iOS only installs from Safari).
+1. Open your browser of choice — **Safari** or **Chrome** both work on recent iOS versions.
 2. Go to **https://zavods.com/meals**.
-3. Tap the **Share button** at the bottom of the screen (the square with the arrow pointing up).
+3. Tap the **Share button** (the square with the arrow pointing up — bottom of the screen in Safari, top-right in Chrome).
 4. Scroll down and tap **"Add to Home Screen"**.
 5. The icon name will say *Dinner App* — leave it as-is or rename if you want.
 6. Tap **"Add"** in the top-right.
 
-You'll find the **chef-hat Z** icon on your home screen. Tap it to open the app — it runs full-screen with no Safari address bar, just like an App Store app.
+You'll find the **chef-hat Z** icon on your home screen. Tap it to open the app — it runs full-screen with no browser address bar, just like an App Store app.
+
+**If "Add to Home Screen" doesn't appear in your browser's share menu**, try Safari instead — it's been the most reliable PWA installer on iOS historically.
 
 **Tip:** When you first open the app, you'll be asked for the family PIN, then pick your name from the avatar grid. The app remembers you on that phone after that.
 
