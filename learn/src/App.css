@@ -85,6 +85,94 @@ pre code {
   font-size: inherit;
 }
 
+/* PIN gate */
+.pin-gate {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: var(--bg);
+}
+.pin-gate-card {
+  max-width: 420px;
+  width: 100%;
+  padding: 36px 32px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+}
+.pin-gate-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  background: var(--primary-soft);
+  color: var(--primary);
+  border-radius: 50%;
+  margin-bottom: 18px;
+}
+.pin-gate-card h1 {
+  font-size: 1.8rem;
+  font-variation-settings: "opsz" 144, "SOFT" 80;
+  margin-bottom: 12px;
+}
+.pin-gate-lede {
+  color: var(--text-muted);
+  font-size: 14.5px;
+  line-height: 1.55;
+  margin-bottom: 24px;
+}
+.pin-gate-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.pin-gate-form input {
+  width: 100%;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 1.6rem;
+  letter-spacing: 0.5em;
+  padding: 14px 12px 14px 26px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.15s;
+}
+.pin-gate-form input:focus { border-color: var(--primary); }
+.pin-gate-form button {
+  padding: 12px 22px;
+  background: var(--primary);
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+  box-shadow: var(--shadow-sm);
+}
+.pin-gate-form button:hover:not(:disabled) { background: var(--primary-hover); }
+.pin-gate-form button:active { transform: scale(0.98); }
+.pin-gate-form button:disabled { opacity: 0.5; cursor: not-allowed; }
+.pin-gate-error {
+  font-size: 13px;
+  color: var(--danger);
+  margin: -4px 0 0;
+}
+.pin-gate-note {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
 /* Layout shell */
 .layout {
   display: flex;
