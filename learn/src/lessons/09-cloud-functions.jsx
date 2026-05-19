@@ -49,7 +49,21 @@ export default function CloudFunctions() {
       <p>Cloud Functions solve all three. They're the place to put backend logic that's too risky or impossible to run in the browser.</p>
 
       <h2>The four functions in this app</h2>
-      <p>All live in <code>functions/index.js</code>:</p>
+      <p>All live in <code>functions/index.js</code>. Here's what they look like in the Firebase Console:</p>
+
+      <figure className="screenshot">
+        <img src="/learn/functions-dashboard.png" alt="Firebase Functions dashboard for the zavod-meals project, listing all four deployed functions (searchRecipes, getRecipeDetails, searchTrustedSites, importRecipeFromUrl) with their HTTP trigger URLs, version v2, request counts over the last 24 hours, min/max instances 0/20, and per-function timeouts." />
+        <figcaption>
+          The Functions dashboard. Each row is one deployed function. The
+          interesting columns: <strong>Requests (24 hrs)</strong> tells you
+          how often each is actually being called (importRecipeFromUrl led
+          with 26; getRecipeDetails was 0). <strong>Min / Max Instances</strong>{' '}
+          showing 0/20 means "scale to zero when nobody's calling, scale
+          out to 20 if traffic spikes" — that's the "serverless" promise
+          in action. <strong>Version v2</strong> = Gen 2 functions, which
+          run on Cloud Run under the hood.
+        </figcaption>
+      </figure>
 
       <h3>importRecipeFromUrl</h3>
       <p>

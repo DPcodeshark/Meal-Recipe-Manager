@@ -171,6 +171,19 @@ firebase deploy                           # everything (rare; usually you want -
         → "Rollback." Live within seconds.
       </p>
 
+      <figure className="screenshot">
+        <img src="/learn/hosting-deploys.png" alt="Firebase Hosting Releases page for the zavod-meals project showing five recent deploys. Each row has a status icon, timestamp, deployer (gDavep@gmail.com), version hash, and file count. The '...' menu is open on one of the rows revealing Rollback and Delete options." />
+        <figcaption>
+          The release history table — every deploy is here, with its hash
+          and file count. The popup menu on the right shows the{' '}
+          <strong>Rollback</strong> option that's the lesson's whole point:
+          one click and the live site reverts to that version in about 30
+          seconds. The starred row is the currently-live release. Knowing
+          this exists changes how nervous you should be about deploying —
+          which is to say, not very.
+        </figcaption>
+      </figure>
+
       <Quiz
         questions={[
           {

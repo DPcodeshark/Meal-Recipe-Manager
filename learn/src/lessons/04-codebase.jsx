@@ -10,6 +10,18 @@ export default function Codebase() {
         files matter most.
       </p>
 
+      <figure className="screenshot">
+        <img src="/learn/github-tree.png" alt="GitHub view of the Meal-Recipe-Manager repository showing top-level folders (functions, landing, learn, public, scripts, src) and files (.env.example, .firebaserc, .gitignore, HANDOFF.md, INSTALL.md, README.md, eslint.config.js). Each row shows its most recent commit message and timestamp. The repo is marked Public; the most recent commit is by 'Dinner App and claude'." />
+        <figcaption>
+          What the repo looks like on GitHub. Two things worth noticing:
+          (1) every row shows the most recent commit that touched that file
+          or folder — handy for "when did X last change?" without leaving
+          the page. (2) The "Dinner App and claude" co-author on recent
+          commits is the signature of a Claude Code commit. You'll see lots
+          of those in the history.
+        </figcaption>
+      </figure>
+
       <h2>The shape of the repo</h2>
       <pre><code>{`Meal-Recipe-Manager/
 ├── src/              ← The Dinner App (React, /meals)
