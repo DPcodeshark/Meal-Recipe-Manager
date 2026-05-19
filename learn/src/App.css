@@ -472,6 +472,33 @@ pre code {
   font-size: 12.5px;
 }
 
+/* Screenshots in lesson body */
+.screenshot {
+  margin: 24px 0;
+  padding: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+.screenshot img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
+.screenshot figcaption {
+  margin-top: 12px;
+  padding: 0 4px;
+  font-size: 13.5px;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+.screenshot figcaption code {
+  font-size: 0.88em;
+}
+
 /* Quiz */
 .quiz {
   margin: 40px 0 0;

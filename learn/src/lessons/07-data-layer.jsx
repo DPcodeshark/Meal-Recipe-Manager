@@ -177,6 +177,22 @@ export default function DataLayer() {
         → select the <code>zavod-meals</code> project → Firestore Database. You'll see a tree view of every collection and document.
         Click around. It'll click once you see the real data structure.
       </p>
+      <figure className="screenshot">
+        <img src="/learn/firestore-console.png" alt="Firebase Firestore Console showing the Dinner App's data: the (default) database on the left, the families collection in the middle with one document (a random ID like 9gvhk722Zd7y8adSdYfB), and that document expanded on the right showing four subcollections (groceryLists, meals, settings, weeks) and a members array with name/role fields for Merrill, Cory, Avery, and Radek." />
+        <figcaption>
+          A real view of this app's Firestore. Notice four things: (1) the
+          family's document ID is a random string Firebase auto-generated
+          — opaque to humans, perfect for code. (2) The <code>members</code>{' '}
+          field is a nested array inside the family document — Firestore can
+          hold complex nested structures, unlike SQL. (3) Subcollections
+          (<code>groceryLists</code>, <code>meals</code>, <code>settings</code>,{' '}
+          <code>weeks</code>) live <em>inside</em> the family document. The
+          full path to a planned week looks like{' '}
+          <code>families/{`{familyId}`}/weeks/{`{weekId}`}</code>. (4) The
+          family name (<code>"The Zavods"</code>) is just another field,
+          alongside <code>members</code>. Both are first-class data.
+        </figcaption>
+      </figure>
 
       <Quiz
         questions={[
