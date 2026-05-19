@@ -9,20 +9,20 @@ export default function Welcome() {
       </p>
 
       <p>
-        It's a real, deployed app that a family of five actually uses. About 4,000
-        lines of code, mostly built in a long collaboration session with Claude
-        Code. The point of this course isn't to make you memorize how every line
-        works — it's to give you enough mental map of the stack and the workflow
-        that you could pick it up six months from now, change something, and
-        ship it without breaking anything.
+        It's a real, deployed app. About 4,000 lines of code, mostly built in a
+        long collaboration session with Claude Code. The point of this course
+        isn't to make you memorize how every line works — it's to use this app
+        as a tangible project to help you learn modern web design and how you
+        can build really interesting things quickly in conjunction with Claude
+        Code (or your favorite competitor).
       </p>
 
       <h2>Who this is for</h2>
       <p>
-        You — and anyone curious about how a small but real production web app
-        comes together. The assumption is you know how to read code, you've
-        written some JavaScript, and you've used the command line. Anything
-        beyond that, we'll explain when it comes up.
+        This guide is written for a "smart but inexperienced" reader. The
+        assumption is you know how to read code a bit, you've written some
+        JavaScript, and you've used the command line. Anything beyond that,
+        we'll explain when it comes up.
       </p>
 
       <h2>What you'll get</h2>
