@@ -1,6 +1,7 @@
 import { Routes, Route, Navigate, useParams } from 'react-router-dom'
 import Layout from './components/Layout.jsx'
 import LessonChrome from './components/LessonChrome.jsx'
+import ScrollToTop from './components/ScrollToTop.jsx'
 import Home from './pages/Home.jsx'
 import { findLesson } from './lessons/index.js'
 
@@ -19,6 +20,7 @@ function LessonRoute() {
 export default function App() {
   return (
     <Layout>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/lessons/:slug" element={<LessonRoute />} />
