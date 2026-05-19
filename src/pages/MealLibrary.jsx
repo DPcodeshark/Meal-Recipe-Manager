@@ -28,6 +28,7 @@ export default function MealLibrary() {
   const { familyId, currentMember, family } = useFamily()
   const CUISINE_TAGS = family?.cuisines || DEFAULT_CUISINES
   const [meals, setMeals] = useState([])
+  const [mealsLoaded, setMealsLoaded] = useState(false)
   const [searchTerm, setSearchTerm] = useState('')
   const [filterTag, setFilterTag] = useState('')
   const [showAdd, setShowAdd] = useState(false)
@@ -69,6 +70,7 @@ export default function MealLibrary() {
     const ref = collection(db, 'families', familyId, 'meals')
     const unsub = onSnapshot(ref, (snap) => {
       setMeals(snap.docs.map(d => ({ id: d.id, ...d.data() })))
+      setMealsLoaded(true)
     })
     return unsub
   }, [familyId])
@@ -635,9 +637,10 @@ export default function MealLibrary() {
         </div>
       )}
 
-      {filtered.length === 0 && meals.length === 0 && (
+      {mealsLoaded && filtered.length === 0 && meals.length === 0 && (
         <div className="empty-state">
-          <p>No meals yet. Tap "Seed Library" to add 80+ family dinners, or add your own!</p>
+          <span className="empty-emoji" aria-hidden="true">🍳</span>
+          <p>No meals in the library yet. Use <strong>Search / Add</strong> or <strong>Paste URL</strong> above to import recipes, or tap <strong>Add manually</strong> to type one in.</p>
         </div>
       )}
 
